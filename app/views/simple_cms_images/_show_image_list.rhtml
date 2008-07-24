@@ -1,0 +1,11 @@
+<% if @images.size > 0 %>
+<ul>
+  <% @images.each_with_index do |image, i| %>
+    <li style="padding:0;margin:0list-style-type:none;display:inline;">
+      <a href="#" onclick="ts_insert_image('<%= image.public_filename %>', 'ALT TEXT');"><%= @thumb_images[i] ? image_tag( @thumb_images[i].public_filename ) : image.filename + "<br />" %></a>
+    </li>
+  <% end %>
+</ul>
+<% else %>
+  No Images Upload Yet.
+<% end %>

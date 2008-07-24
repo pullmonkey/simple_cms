@@ -1,0 +1,13 @@
+.panel_wrapper div.current {
+	height: 100px;
+}
+
+.mceActionPanel {
+	margin-top: 7px;
+}
+
+#code_panel {
+		height: 30px;
+		padding-top:5px;
+}
+

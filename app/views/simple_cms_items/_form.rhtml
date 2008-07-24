@@ -1,0 +1,14 @@
+<% %>
+<div class="simple_cms_form">
+	<h3 id="revision_heading">Content for Simple CMS Label - <%= @simple_cms_item.label %>
+  <div id="revision_title" style="display: inline">
+    - Revision <div id="version_id" style="display: inline"><%= @simple_cms_item.version %></div>
+  </div>
+  </h3>
+  <%= text_area :simple_cms_item, :data, {:class => "mceEditor"} %>
+	<br/>
+	<%= submit_tag "Save Content" %>
+	<%= link_to "cancel", session["cms_referer"],
+              :confirm => "Are you sure you want to discard your changes?" %>
+	<br/>
+</div>
