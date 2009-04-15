@@ -62,7 +62,7 @@ var TinyMCE_InsertCodePlugin = {
     tinyMCE.switchClass(editor_id + '_insertcode', 'mceButtonNormal');
 
     // Select insertcode button if parent node is a pre
-    if (tinyMCE.getParentElement(node, "pre", "class"))
+    if (tinyMCE.getParentElement(node, "code_highlighting"))
       tinyMCE.switchClass(editor_id + '_insertcode', 'mceButtonSelected');
 
     return true;

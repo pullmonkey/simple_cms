@@ -227,6 +227,17 @@ function insertMedia() {
 		return false;
 	}
 
+  if (f.media_type.options[f.media_type.selectedIndex].value == "file") {
+    h  = '<a href="' + f.src.value + '"';
+    h += ' target="_blank"';
+    h += '>';
+    h += f.link_text.value;
+    h += '</a>';
+		tinyMCE.selectedInstance.execCommand('mceInsertContent', false, h);
+	  tinyMCEPopup.close();
+    return;
+  }
+
 	f.width.value = f.width.value == "" ? 100 : f.width.value;
 	f.height.value = f.height.value == "" ? 100 : f.height.value;
 
@@ -384,7 +395,18 @@ function changedType(t) {
 	d.getElementById('shockwave_options').style.display = 'none';
 	d.getElementById('wmp_options').style.display = 'none';
 	d.getElementById('rmp_options').style.display = 'none';
-	d.getElementById(t + '_options').style.display = 'block';
+  d.getElementById('file_options').style.display = 'none';
+  if (t == 'file') {
+    d.getElementById('dimensions').style.display = 'none';
+    d.getElementById('prev').style.display = 'none';
+    d.getElementById('advanced_tab').style.display = 'none';
+    d.getElementById('file_options').style.display = '';
+  } else {
+    d.getElementById('dimensions').style.display = '';
+    d.getElementById('prev').style.display = '';
+    d.getElementById('advanced_tab').style.display = '';
+	  d.getElementById(t + '_options').style.display = 'block';
+  }
 }
 
 function serializeParameters() {
@@ -600,6 +622,9 @@ function generatePreview(c) {
 			codebase = 'http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701';
 			type = 'audio/x-pn-realaudio-plugin';
 			break;
+
+    case "file":
+      break;
 	}
 
 	if (pl == '') {

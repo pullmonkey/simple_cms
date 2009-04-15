@@ -1,36 +1,19 @@
 /* CSS file for advimage plugin popup */
 
 div.image {
+  display: table-cell;
   width: 60px;
   height: 100px;
-  float: left;
   margin-bottom: 1px;
-  margin-right: 5px;
-  border: 2px solid #fff;
 }
 
 div.image img {
-  vertical-align: top;
-  margin: 0px;
-  margin-bottom: 1px;
-}
-
-div.image_ie {
-  float: left;
-  display: inline;
-  width: 60px;
-  height: 100px;
-  margin-bottom: 1px;
-  border: 2px solid #fff;
-}
-
-div.image_ie img {
   vertical-align: top;
   margin: 5px;
   margin-bottom: 1px;
 }
 
-span.controls {
+div.controls {
   display: none;
   background-color: #A9A9A9;
   width: 60px;
@@ -39,23 +22,19 @@ span.controls {
 }
 
 a.controls {
-  /*background-color: #A9A9A9;*/
-  vertical-align: bottom;
-  /*float: right;*/
+  background-color: #A9A9A9;
+  float: right;
   margin-right: 5px;
 }
 
 a.controls img {
   border: 0px;
-  /*background-color: #A9A9A9;*/
-  vertical-align: bottom;
+  background-color: #A9A9A9;
 }
 
 div.over_image {
-  float: left;
   border: 2px solid gray;
   background-color: #A9A9A9;
-  margin-right: 5px;
 }
 
 .mceImageList {

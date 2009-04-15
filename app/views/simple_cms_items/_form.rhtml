@@ -7,8 +7,8 @@
   </h3>
   <%= text_area :simple_cms_item, :data, {:class => "mceEditor"} %>
 	<br/>
-	<%= submit_tag "Save Content" %>
-	<%= link_to "cancel", session["cms_referer"],
-              :confirm => "Are you sure you want to discard your changes?" %>
+	<%= submit_tag "Save Content", :style => "float:left;" %>
+  <%= button_to "Cancel", {}, :name => 'commit', :style => "float:left;",
+                              :confirm => "Are you sure you want to discard your changes?" %>
 	<br/>
 </div>

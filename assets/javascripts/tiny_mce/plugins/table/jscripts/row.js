@@ -1,3 +1,7 @@
+function formElement() {
+  return document.forms[0];
+}
+
 function init() {
 	tinyMCEPopup.resizeToInnerSize();
 

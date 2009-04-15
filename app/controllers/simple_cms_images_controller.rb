@@ -1,10 +1,12 @@
 class SimpleCmsImagesController < ApplicationController
-  # For Rails version 2.1 and greater
-  self.append_view_path(File.join(File.dirname(__FILE__), '..', 'views'))
-  # For Rails version 2.0 and greater
-  #self.view_paths << File.join(File.dirname(__FILE__), '..', 'views')
-  # For Rails versions less than 2.0
-  #self.template_root = File.join(File.dirname(__FILE__), '..', 'views')
+  # For Rails version >= 2.1
+  # uncomment self.append_view_path File.join(File.dirname(__FILE__), '..', 'app', 'views')
+  # in lib/simple_cms.rb file
+  # For Rails version >= 2.0 and < 2.1
+	#self.view_paths << File.join(File.dirname(__FILE__), '..', 'views')
+  # For Rails versions < 2.0
+	#self.template_root = File.join(File.dirname(__FILE__), '..', 'views')
+  
   skip_before_filter :verify_authenticity_token
 
   def index
@@ -58,9 +60,8 @@ class SimpleCmsImagesController < ApplicationController
     @image = SimpleCmsImage.find(params[:id])
     @image.destroy
 
-    respond_to do |format|
-      # format.html { redirect_to my_image_url }
-      format.xml { head :ok }
+    render :update do |page|
+      page["image_#{params[:id]}"].remove
     end
   end
 end

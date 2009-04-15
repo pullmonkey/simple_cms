@@ -64,6 +64,7 @@
 										<option value="shockwave">Shockwave</option>
 										<option value="wmp">Windows Media</option>
 										<option value="rmp">Real Media</option>
+                    <option value="file">Downloadable File</option>
 									</select>
 								</td>
 							</tr>
@@ -82,7 +83,7 @@
 								<td><label for="linklist">{$lang_advmedia_list}</label></td>
 								<td id="linklistcontainer">&nbsp;</td>
 							</tr>
-							<tr>
+							<tr id="dimensions">
 								<td><label for="width">{$lang_advmedia_size}</label></td>
 								<td>
 								<table border="0" cellpadding="0" cellspacing="0">
@@ -93,6 +94,10 @@
 									</tr>
 								</table>
 							</tr>
+              <tr id="file_options">
+                <td><label for="link_text">{$lang_advmedia_link_text}</label></td>
+                <td><input type="text" id="link_text" name="link_text" value="" style="width: 230px;" /></td>
+              </tr>
 					</table>
 				</fieldset>
 

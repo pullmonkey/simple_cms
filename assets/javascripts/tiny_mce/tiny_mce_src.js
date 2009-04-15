@@ -1436,8 +1436,6 @@ TinyMCE_Engine.prototype = {
 	getButtonHTML : function(id, lang, img, cmd, ui, val) {
 		var h = '', m, x, io = '';
 
-    alert("this is: " + img);
-
 		cmd = 'tinyMCE.execInstanceCommand(\'{$editor_id}\',\'' + cmd + '\'';
 
 		if (typeof(ui) != "undefined" && ui != null)
@@ -1856,6 +1854,7 @@ TinyMCE_Engine.prototype = {
 		if (this.plugins[name])
 			b = this.plugins[name].baseURL;
 
+    //alert("import plugin: " + b + '/langs/' + tinyMCE.settings.language + '.js');
 		tinyMCE.loadScript(b + '/langs/' + tinyMCE.settings.language +  '.js');
 	},
 
@@ -4092,6 +4091,12 @@ tinyMCE.add(TinyMCE_Engine, {
 
 		// Close tags <img></img> to <img/>
 		s = s.replace(new RegExp('<(img|br|hr)([^>]*)><\\/(img|br|hr)>', 'gi'), '<$1$2 />');
+
+    // Remove open closed tags with nothing inside them
+    //s = s.replace(new RegExp('<(h[1-6]|font|strong|a|b|u|i|table|em|ul|ol|blockquote|code_highlighting).*>(\\s|&nbsp;|)*</(h[1-6]|font|strong|a|b|u|i|table|em|ul|ol|blockquote|code_highlighting)>', 'gi'), '');
+
+    // Fix split up code_highlighting tags
+    s = s.replace(new RegExp('</code_highlighting>\\s</p>\\s<p>\\s<code_highlighting\\stype="[a-z]*">', 'gi'), '<br />\n');
 
 		// Weird MSIE bug, <p><hr /></p> breaks runtime?
 		if (tinyMCE.isIE)

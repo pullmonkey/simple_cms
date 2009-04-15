@@ -1,15 +1,17 @@
-<% %>
+<% -%>
 <div class="simple_cms_item<%= "_admin" if @cms_admin %>"
     <%= "onmouseover=\"show_simple_cms_controls($(this))\"" if @cms_admin %>
     <%= "onmouseout=\"hide_simple_cms_controls($(this))\"" if @cms_admin %>>
-  <% if @cms_admin and simple_cms_item.data.blank? %>
+  <% if @cms_admin and simple_cms_item.data.blank? -%>
     <b style="cursor: pointer;" <%= "onclick=\"edit_simple_cms_item(#{simple_cms_item.id},'#{@prefix}')\"" %>>Click to add content here.</b>
-  <% else %>
+  <% else -%>
     <div class="controls">
-      <% if @cms_admin %>
+      <% if @cms_admin -%>
         <b <%= "onclick=\"edit_simple_cms_item(#{simple_cms_item.id},'#{@prefix}')\"" %>>Edit</b>
-      <% end %>
+      <% end -%>
     </div>
-    <%= parse_coderay(simple_cms_item.data) %>
-  <% end %>
+    <% if !(simple_cms_item.data.nil? and !@cms_admin) -%>
+      <%= parse_coderay(simple_cms_item.data) %>
+    <% end -%>
+  <% end -%>
 </div>

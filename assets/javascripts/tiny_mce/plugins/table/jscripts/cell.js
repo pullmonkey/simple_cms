@@ -1,3 +1,7 @@
+function formElement() {
+  return document.forms[0];
+}
+
 function init() {
 	tinyMCEPopup.resizeToInnerSize();
 
@@ -7,7 +11,7 @@ function init() {
 
 	var inst = tinyMCE.selectedInstance;
 	var tdElm = tinyMCE.getParentElement(inst.getFocusElement(), "td,th");
-	var formObj = document.forms[0];
+	var formObj = formElement();
 	var st = tinyMCE.parseStyle(tinyMCE.getAttrib(tdElm, "style"));
 
 	// Get table cell data
@@ -57,7 +61,7 @@ function updateAction() {
 	var tdElm = tinyMCE.getParentElement(inst.getFocusElement(), "td,th");
 	var trElm = tinyMCE.getParentElement(inst.getFocusElement(), "tr");
 	var tableElm = tinyMCE.getParentElement(inst.getFocusElement(), "table");
-	var formObj = document.forms[0];
+	var formObj = formElement();
 
 	inst.execCommand('mceBeginUndoLevel');
 
@@ -125,7 +129,7 @@ function nextCell(elm) {
 
 function updateCell(td, skip_id) {
 	var inst = tinyMCE.selectedInstance;
-	var formObj = document.forms[0];
+	var formObj = formElement();
 	var curCellType = td.nodeName.toLowerCase();
 	var celltype = getSelectValue(formObj, 'celltype');
 	var doc = inst.getDoc();
@@ -185,7 +189,7 @@ function updateCell(td, skip_id) {
 }
 
 function changedBackgroundImage() {
-	var formObj = document.forms[0];
+	var formObj = formElement();
 	var st = tinyMCE.parseStyle(formObj.style.value);
 
 	st['background-image'] = "url('" + formObj.backgroundimage.value + "')";
@@ -194,7 +198,7 @@ function changedBackgroundImage() {
 }
 
 function changedSize() {
-	var formObj = document.forms[0];
+	var formObj = formElement();
 	var st = tinyMCE.parseStyle(formObj.style.value);
 
 	var width = formObj.width.value;
@@ -213,7 +217,7 @@ function changedSize() {
 }
 
 function changedColor() {
-	var formObj = document.forms[0];
+	var formObj = formElement();
 	var st = tinyMCE.parseStyle(formObj.style.value);
 
 	st['background-color'] = formObj.bgcolor.value;
@@ -223,7 +227,7 @@ function changedColor() {
 }
 
 function changedStyle() {
-	var formObj = document.forms[0];
+	var formObj = formElement();
 	var st = tinyMCE.parseStyle(formObj.style.value);
 
 	if (st['background-image'])

@@ -4,18 +4,21 @@ SimpleCMS
 Created by Slaive and PullMonkey (December 2007). This is a very good,
 easy to use cms plugin.
 
-This plugin is built for rails version 2.0.2. So if you are using an older 
+This plugin is built for rails versions <= 2.1.0. So if you are using an older 
 version of rails then you will need to edit each of the controllers 
-from: 
+uncomment this for rails versions >= 2.0 and < 2.1
   self.view_paths << File.join(File.dirname(__FILE__), '..', 'views')
-to:
+uncomment this for rails versions < 2.0
   self.template_root = File.join(File.dirname(__FILE__), '..', 'views')
+
+and comment out this in the lib/simple_cms.rb file
+  self.append_view_paths File.join(File.dirname(__FILE__), '..', 'app', 'views')
 
 
 SimpleCMS dependencies
 ======================
 
-Once you have SimpleCMS installed you will need to install 3 more plugins:
+Once you have SimpleCMS installed you will need to install 4 more plugins:
     - attachment_fu
     - responds_to_parent
     - acts_as_versioned
@@ -26,8 +29,11 @@ You can do this easily by using the command:
 If this doesn't work you can do it manually by doing the following commands:
     ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/attachment_fu/
     ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/responds_to_parent/
-    ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned/
     ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/coderay/
+  If you are using rails versions >= 2.1.1 then install this one
+    ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned_2.1.1/
+  If you are using rails versions < 2.1.1 then install this one
+    ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned/
 
 
 You will also need to have an image processor installed. There are 3 to choose from:

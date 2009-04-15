@@ -5,24 +5,32 @@ namespace :simple_cms do
 
   desc 'Installs required javascript and css files to the public/javascripts and public/stylesheets directories'
   task :install do
-    puts "COPYING *.js:"
-    FileUtils.cp Dir[PLUGIN_ROOT + '/assets/javascripts/*.js'], RAILS_ROOT + '/public/javascripts'
+    FileList[PLUGIN_ROOT + '/assets/javascripts/*.js'].each do |f|
+      puts "ADDING /public/javascripts/" + File.basename(f)
+      FileUtils.cp f, RAILS_ROOT + '/public/javascripts'
+    end
+    FileList[PLUGIN_ROOT + '/assets/stylesheets/*.css'].each do |f|
+      puts "ADDING /public/stylesheets/" + File.basename(f)
+      FileUtils.cp f, RAILS_ROOT + '/public/stylesheets'
+    end
+    
     puts "COPYING tiny_mce:"
     FileUtils.cp_r Dir[PLUGIN_ROOT + '/assets/javascripts/tiny_mce'], RAILS_ROOT + '/public/javascripts'
-    puts "COPYING *.css:"
-    FileUtils.cp Dir[PLUGIN_ROOT + '/assets/stylesheets/*.css'], RAILS_ROOT + '/public/stylesheets' 
   end
   
   desc 'Uninstalls all javascript and css files that were created by the simple_cms:install'
   task :uninstall do
-    puts "REMOVING /public/javascripts/tiny_mce:"
+    puts "REMOVING /assets/javascripts/tiny_mce:"
     FileUtils.rm_rf RAILS_ROOT + '/public/javascripts/tiny_mce'
-    puts "REMOVING /public/javascripts/simple_cms.js"
-    FileUtils.rm RAILS_ROOT + '/public/javascripts/simple_cms.js'
-    puts "REMOVING /public/stylesheets/simple_cms.css"
-    FileUtils.rm RAILS_ROOT + '/public/stylesheets/simple_cms.css'
-    puts "REMOVING /public/stylesheets/coderay.css"
-    FileUtils.rm RAILS_ROOT + '/public/stylesheets/coderay.css'
+
+    FileList[PLUGIN_ROOT + '/assets/javascripts/*.js'].each do |file|
+      puts "REMOVING /public/javascripts/" + File.basename(file)
+      FileUtils.rm RAILS_ROOT + '/public/javascripts/' + File.basename(file)
+    end
+    FileList[PLUGIN_ROOT + '/assets/stylesheets/*.css'].each do |file|
+      puts "REMOVING /public/stylesheets/" + File.basename(file)
+      FileUtils.rm RAILS_ROOT + '/public/stylesheets/' + File.basename(file)
+    end
   end
 
   desc 'Installs simple_cms dependencies(attachment_fu, responds_to_parent, acts_as_versioned, and coderay)'
@@ -32,7 +40,7 @@ namespace :simple_cms do
     puts "Installing plugin responds_to_parent..."
     puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/responds_to_parent/`
     puts "Installing plugin acts_as_versioned..."
-    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned/`
+    puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/acts_as_versioned_2.1.1/`
     puts "Installing plugin coderay..."
     puts `ruby script/plugin install http://svn.pullmonkey.com/plugins/trunk/coderay/`
   end
