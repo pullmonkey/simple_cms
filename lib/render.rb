@@ -39,8 +39,8 @@ module SimpleCmsMod
           session[:cms_data][@cms_params][:prefix]  = @prefix
 
           request_path = request.env["REQUEST_PATH"]
-          request_path = request.env["REQUEST_URI"] if request_path.nil? || request_path.empty?
-          request_path = request.env["SCRIPT_NAME"] if request_path.nil? || request_path.empty?
+          request_path = request.env["REQUEST_URI"] if request_path.blank?
+          request_path = request.env["SCRIPT_NAME"] if request_path.blank?
           session[:cms_data][@cms_params][:referer] = request_path.nil? ? "/" : request_path.gsub(/\/sites.*skizmo.com/,"")
           logger.error "request_path: " + request_path.to_s
           logger.error("\nsession data: " + session[:cms_data].inspect + "\n\n")
